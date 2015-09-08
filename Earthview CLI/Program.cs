@@ -23,7 +23,7 @@ namespace Earthview_CLI
             {
                 var seed = Registry.CurrentUser.GetValue("EarthViewEndpoint");
                 var view = new EarthView.ImageViewer(seed.ToString());
-                view.Next();
+            
                 Registry.CurrentUser.SetValue("EarthViewEndpoint", view.GetNextEndpoint());
                 view.SetWallpaper();
             }
