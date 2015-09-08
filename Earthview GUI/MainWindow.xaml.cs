@@ -21,16 +21,25 @@ namespace Earthview_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private EarthView.ImageViewer view;
         public MainWindow()
         {
             InitializeComponent();
-            UpdateWallpaper();
+
+            view = new ImageViewer("/_api/hamburg-germany-5646.json");
+            this.currentImage.Source = view.GetImage();
         }
 
-        public void UpdateWallpaper()
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var wallpaper = new EarthView.EarthView("https://www.gstatic.com/prettyearth/assets/full/1084.jpg");
-            this.currentImage.Source = wallpaper.GetImage();
+            this.view.Next();
+            this.currentImage.Source = view.GetImage();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.view.SetWallpaper();
+        }
+
     }
 }
